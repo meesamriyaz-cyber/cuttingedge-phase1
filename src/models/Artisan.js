@@ -1,6 +1,29 @@
 import mongoose from "mongoose";
 import createSlug from "../utils/slugify.js";
 
+const artworkImageSchema = new mongoose.Schema(
+{
+    url: {
+        type: String,
+        required: true
+    },
+
+    publicId: {
+        type: String,
+        required: true
+    },
+
+    caption: String,
+
+    craftId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Craft"
+    }
+},
+{
+    _id: false
+});
+
 const artisanSchema = new mongoose.Schema(
 {
     name: {
@@ -28,6 +51,8 @@ const artisanSchema = new mongoose.Schema(
     profilePhoto: String,
 
     profilePhotoPublicId: String,
+
+    artworkImages: [artworkImageSchema],
 
     biography: String,
 

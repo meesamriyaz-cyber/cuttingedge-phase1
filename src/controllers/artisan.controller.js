@@ -20,6 +20,7 @@ const artisanFields = [
     "craftIds",
     "profilePhoto",
     "profilePhotoPublicId",
+    "artworkImages",
     "biography",
     "yearsOfExperience",
     "awards",
@@ -48,6 +49,36 @@ const ensureCraftsExist = async (craftIds = []) => {
     }
 };
 
+const craftIdValue = (craftId) => {
+    return craftId?._id || craftId;
+};
+
+const artworkCraftIds = (artworkImages = []) => {
+    return artworkImages
+        .map((image) => craftIdValue(image.craftId))
+        .filter(Boolean);
+};
+
+const ensureArtworkCraftsBelongToArtisan = (
+    artworkImages = [],
+    craftIds = []
+) => {
+    const artisanCraftIds = new Set(
+        craftIds.map((craftId) => String(craftIdValue(craftId)))
+    );
+
+    const hasMismatchedCraft =
+    artworkCraftIds(artworkImages)
+    .some((craftId) => !artisanCraftIds.has(String(craftId)));
+
+    if (hasMismatchedCraft) {
+        throw new ApiError(
+            "Artwork craft must be assigned to artisan",
+            400
+        );
+    }
+};
+
 const ensureUniqueSlug = async (slug, excludeId = null) => {
     const query = { slug };
 
@@ -70,7 +101,16 @@ asyncHandler(async (req, res) => {
     const data = pickFields(req.body, artisanFields);
     const slug = createSlug(data.name);
 
-    await ensureCraftsExist(data.craftIds);
+    const craftIds = data.craftIds || [];
+
+    await ensureCraftsExist([
+        ...craftIds,
+        ...artworkCraftIds(data.artworkImages)
+    ]);
+    ensureArtworkCraftsBelongToArtisan(
+        data.artworkImages,
+        craftIds
+    );
     await ensureUniqueSlug(slug);
 
     const artisan =
@@ -195,6 +235,10 @@ asyncHandler(async (req, res) => {
     .populate(
         "craftIds",
         "name slug heroImage shortDescription"
+    )
+    .populate(
+        "artworkImages.craftId",
+        "name slug"
     );
 
     if (!artisan) {
@@ -219,6 +263,10 @@ asyncHandler(async (req, res) => {
     )
     .populate(
         "craftIds",
+        "name slug"
+    )
+    .populate(
+        "artworkImages.craftId",
         "name slug"
     );
 
@@ -252,8 +300,25 @@ asyncHandler(async (req, res) => {
 
     const updates = pickFields(req.body, artisanFields);
 
-    if (updates.craftIds) {
-        await ensureCraftsExist(updates.craftIds);
+    if (
+        updates.craftIds !== undefined ||
+        updates.artworkImages !== undefined
+    ) {
+        const nextCraftIds = updates.craftIds !== undefined
+            ? updates.craftIds
+            : artisan.craftIds;
+        const nextArtworkImages = updates.artworkImages !== undefined
+            ? updates.artworkImages
+            : artisan.artworkImages;
+
+        await ensureCraftsExist([
+            ...nextCraftIds,
+            ...artworkCraftIds(nextArtworkImages)
+        ]);
+        ensureArtworkCraftsBelongToArtisan(
+            nextArtworkImages,
+            nextCraftIds
+        );
     }
 
     if (updates.name) {

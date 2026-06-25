@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kashmir Arts & Crafts — by Cutting Edge Enterprises</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+
+  <!-- ── Navbar ─────────────────────────── -->
+  <header id="navbar">
+    <a href="#" class="logo">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <polygon points="15,2 26,8 26,22 15,28 4,22 4,8" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+        <polygon points="15,7 22,11 22,19 15,23 8,19 8,11" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="0.6"/>
+        <polygon points="15,2 26,8 15,13 4,8" fill="rgba(201,168,76,0.18)" stroke="none"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Kashmir Arts &amp; Crafts</span>
+        <span class="logo-sub">by Cutting Edge Enterprises</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#artisans">Artisans</a>
+      <a href="#stories">Stories</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu">
+      <a href="#artisans">Artisans</a>
+      <a href="#stories">Stories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       HERO — split layout
+       Left: text + stats   Right: carousel
+  ══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+
+    <!-- LEFT column -->
+    <div class="hero-left">
+      <p class="hero-eyebrow">The Valley of Living Traditions</p>
+
+      <h1 class="hero-title">Kashmir</h1>
+
+      <p class="hero-sub-serif"><em id="rotating-word">Heritage</em></p>
+
+      <div class="hero-ornament">
+        <span class="orn-line"></span>
+        <span class="orn-diamond"></span>
+        <span class="orn-line orn-line-r"></span>
+      </div>
+
+      <p class="hero-body">
+        Six centuries of artisanal mastery — each thread, each stroke, each cut
+        a conversation between maker and material, passed down through the
+        families of the valley.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#artisans" class="btn btn-primary">Meet Artisans</a>
+        <a href="#contact"  class="btn btn-outline">Get in Touch</a>
+      </div>
+
+      <!-- Mini stats bar -->
+      <div class="hero-stats">
+        <div class="hs-item">
+          <span class="hs-num">500+</span>
+          <span class="hs-lbl">Master Artisans</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <span class="hs-num">6</span>
+          <span class="hs-lbl">Centuries</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <span class="hs-num">38</span>
+          <span class="hs-lbl">Craft Types</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <span class="hs-num">94</span>
+          <span class="hs-lbl">Villages</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT column — 3D craft carousel -->
+    <div class="hero-right">
+      <div class="hero-carousel-label">
+        <p class="section-eyebrow" style="text-align:center;opacity:1;transform:none">
+          Celebrated Crafts
+        </p>
+      </div>
+
+      <div class="hero-carousel-stage">
+        <div class="hero-carousel-scene">
+          <div class="carousel-ring" id="carousel-ring">
+            <!-- cards injected by carousel.js -->
+          </div>
+        </div>
+        <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
+        <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Next">&#8594;</button>
+      </div>
+
+      <div class="carousel-dots" id="carousel-dots"></div>
+
+      <div class="carousel-detail" id="carousel-detail">
+        <p class="detail-tag"  id="detail-tag"></p>
+        <h3 class="detail-name" id="detail-name"></h3>
+        <p class="detail-origin" id="detail-origin"></p>
+        <p class="detail-desc"   id="detail-desc"></p>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ARTISANS — fetched from backend API
+       Falls back to static demo profiles
+  ══════════════════════════════════════ -->
+  <section id="artisans" class="section-pad section-alt">
+    <div class="section-inner">
+      <header class="section-header">
+        <p class="section-eyebrow">Faces Behind the Art</p>
+        <h2 class="section-title">Master Artisans</h2>
+        <div class="section-rule"></div>
+        <p class="section-sub">
+          Three generations of family tradition — carrying forward the soul of
+          Kashmir's craft heritage, one masterpiece at a time.
+        </p>
+      </header>
+
+      <div class="artisans-status" id="artisans-status"></div>
+      <div class="artisans-grid" id="artisans-grid"></div>
+    </div>
+  </section>
+
+  <section id="artisan-detail" class="artisan-detail-page" hidden></section>
+
+  <!-- ══════════════════════════════════════
+       STORIES
+  ══════════════════════════════════════ -->
+  <section id="stories" class="section-pad">
+    <div class="section-inner">
+      <header class="section-header">
+        <p class="section-eyebrow">From the Valley</p>
+        <h2 class="section-title">Stories &amp; Journals</h2>
+        <div class="section-rule"></div>
+        <p class="section-sub">
+          Deep reads on craft traditions, artisans, and the cultural history of Kashmir.
+        </p>
+      </header>
+      <div class="stories-grid" id="stories-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about" class="section-pad section-alt">
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="section-eyebrow" style="opacity:1;transform:none;margin-bottom:14px">Our Mission</p>
+        <h2 class="section-title" style="opacity:1;transform:none;text-align:left;margin-bottom:14px">
+          Preserving a Living Legacy
+        </h2>
+        <div class="section-rule" style="margin:0 0 24px;transform:scaleX(1)"></div>
+        <p class="about-body">
+          Kashmir Arts &amp; Crafts by Cutting Edge Enterprises is a humble attempt to connect the world
+          with the extraordinary artisans of the Kashmir Valley — ensuring their
+          centuries-old techniques survive and thrive in the modern age.
+        </p>
+        <p class="about-body" style="margin-top:18px">
+          We document endangered crafts, support artisan cooperatives, and bring
+          authentic Kashmiri workmanship to collectors and enthusiasts across the globe.
+        </p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:32px;display:inline-flex">
+          Partner With Us
+        </a>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="pillar-icon">◈</span>
+          <h4>Documentation</h4>
+          <p>Recording every technique before it is lost to time.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">✦</span>
+          <h4>Artisan Support</h4>
+          <p>Marketing, Branding and E-Commerce, all combined, for artisans, to interact with Global audience.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">❋</span>
+          <h4>Global Access</h4>
+          <p>Bringing authentic Kashmiri craft to collectors/buyers worldwide.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">⧖</span>
+          <h4>Craft Authentication</h4>
+          <p>Interaction with the living legends of each craft.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACT US
+  ══════════════════════════════════════ -->
+  <section id="contact" class="section-pad">
+    <div class="contact-inner">
+
+      <!-- Left: info -->
+      <div class="contact-left">
+        <p class="section-eyebrow" style="opacity:1;transform:none;margin-bottom:14px">Get in Touch</p>
+        <h2 class="section-title" style="opacity:1;transform:none;text-align:left;margin-bottom:14px">
+          Let's Connect
+        </h2>
+        <div class="section-rule" style="margin:0 0 22px;transform:scaleX(1)"></div>
+
+        <p class="contact-tagline">
+          Whether you're a collector, a researcher, or simply someone in love with
+          Kashmir's craft heritage — we'd love to hear from you.
+        </p>
+
+        <div class="contact-info">
+          <div class="ci-item">
+            <span class="ci-icon">📍</span>
+            <span>Doulatabad, Srinagar, Jammu &amp; Kashmir, India 190003</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-icon">✉️</span>
+            <span>enquiry@cuttingedge-enterprises.in</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-icon">📞</span>
+            <span>+91-9149410572</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-icon">🕐</span>
+            <span>Mon – Sat, 10 AM – 6 PM IST</span>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <a href="#" class="cs-link">Instagram</a>
+          <a href="#" class="cs-link">Twitter / X</a>
+          <a href="#" class="cs-link">YouTube</a>
+          <a href="#" class="cs-link">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <form class="contact-form" id="contact-form" novalidate>
+        <p class="form-heading">Send us a message</p>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" placeholder="Your full name" required />
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-subject">Subject</label>
+          <input id="cf-subject" type="text" placeholder="How can we help?" />
+        </div>
+        <div class="form-field">
+          <label for="cf-interest">Area of Interest</label>
+          <select id="cf-interest"
+            style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--cream);font-family:var(--sans);font-size:14px;cursor:pointer;appearance:none">
+            <option value="" style="background:#1a1612">Select an option…</option>
+            <option value="collector" style="background:#1a1612">Collector / Buyer</option>
+            <option value="researcher" style="background:#1a1612">Researcher / Academic</option>
+            <option value="artisan" style="background:#1a1612">Artisan Partnership</option>
+            <option value="media" style="background:#1a1612">Media / Press</option>
+            <option value="other" style="background:#1a1612">Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" rows="5" placeholder="Tell us about your interest…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;font-size:13px">
+          Send Message
+        </button>
+        <p class="form-note">We respond within 1–2 business days.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────── -->
+  <footer id="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Kashmir Arts &amp; Crafts by Cutting Edge Enterprises. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

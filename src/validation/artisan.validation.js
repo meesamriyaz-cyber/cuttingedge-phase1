@@ -4,6 +4,13 @@ const objectId = z
     .string()
     .regex(/^[a-f\d]{24}$/i, "Invalid object id");
 
+const artworkImageSchema = z.object({
+    url: z.string().url(),
+    publicId: z.string().trim().min(1),
+    caption: z.string().trim().max(200).optional(),
+    craftId: objectId.optional()
+}).strict();
+
 const artisanFields = {
     name: z
         .string()
@@ -28,6 +35,11 @@ const artisanFields = {
     profilePhotoPublicId:
         z.string()
         .trim()
+        .optional(),
+
+    artworkImages:
+        z.array(artworkImageSchema)
+        .max(30)
         .optional(),
 
     yearsOfExperience:
@@ -61,6 +73,7 @@ z.object({
     biography: artisanFields.biography,
     profilePhoto: artisanFields.profilePhoto,
     profilePhotoPublicId: artisanFields.profilePhotoPublicId,
+    artworkImages: artisanFields.artworkImages,
     yearsOfExperience: artisanFields.yearsOfExperience,
     craftIds: artisanFields.craftIds,
     awards: artisanFields.awards,
