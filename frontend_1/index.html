@@ -271,20 +271,35 @@
         <div class="form-row">
           <div class="form-field">
             <label for="cf-name">Name</label>
-            <input id="cf-name" type="text" placeholder="Your full name" required />
+            <input id="cf-name" name="name" type="text" placeholder="Your full name"
+              autocomplete="name" minlength="2" maxlength="120" required />
           </div>
           <div class="form-field">
             <label for="cf-email">Email</label>
-            <input id="cf-email" type="email" placeholder="your@email.com" required />
+            <input id="cf-email" name="email" type="email" placeholder="your@email.com"
+              autocomplete="email" maxlength="254" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-phone">Phone <span>(optional)</span></label>
+            <input id="cf-phone" name="phone" type="tel" placeholder="+91 98765 43210"
+              autocomplete="tel" maxlength="30" />
+          </div>
+          <div class="form-field">
+            <label for="cf-organization">Organization <span>(optional)</span></label>
+            <input id="cf-organization" name="organization" type="text"
+              placeholder="Company or institution" autocomplete="organization" maxlength="160" />
           </div>
         </div>
         <div class="form-field">
           <label for="cf-subject">Subject</label>
-          <input id="cf-subject" type="text" placeholder="How can we help?" />
+          <input id="cf-subject" name="subject" type="text"
+            placeholder="How can we help?" maxlength="200" />
         </div>
         <div class="form-field">
           <label for="cf-interest">Area of Interest</label>
-          <select id="cf-interest"
+          <select id="cf-interest" name="interest"
             style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:2px;padding:12px 14px;color:var(--cream);font-family:var(--sans);font-size:14px;cursor:pointer;appearance:none">
             <option value="" style="background:#1a1612">Select an option…</option>
             <option value="collector" style="background:#1a1612">Collector / Buyer</option>
@@ -296,12 +311,15 @@
         </div>
         <div class="form-field">
           <label for="cf-message">Message</label>
-          <textarea id="cf-message" rows="5" placeholder="Tell us about your interest…" required></textarea>
+          <textarea id="cf-message" name="message" rows="5"
+            placeholder="Tell us about your interest…" minlength="10" maxlength="5000" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;font-size:13px">
           Send Message
         </button>
-        <p class="form-note">We respond within 1–2 business days.</p>
+        <p class="form-note" id="contact-form-note" aria-live="polite">
+          We respond within 1–2 business days.
+        </p>
       </form>
     </div>
   </section>

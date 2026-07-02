@@ -5,6 +5,7 @@ import { initCarousel }     from './carousel.js'
 import { renderStories }    from './sections.js'
 import { initArtisans }     from './artisans.js'
 import { initScrollReveal } from './scroll.js'
+import { initContactForm }  from './contact.js'
 
 /* render static DOM content */
 renderStories()
@@ -14,6 +15,7 @@ initNav()
 initHero()
 initCarousel()
 initScrollReveal()
+initContactForm()
 
 /* artisans — async, tries API first */
 initArtisans()

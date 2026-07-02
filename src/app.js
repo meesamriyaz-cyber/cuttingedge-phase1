@@ -11,6 +11,7 @@ import mediaRoutes from "./routes/media.routes.js";
 import artisanRoutes from "./routes/artisan.routes.js";
 import articleRoutes from "./routes/article.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
+import contactLeadRoutes from "./routes/contactLead.routes.js";
 import {
     errorHandler,
     notFoundHandler
@@ -83,6 +84,7 @@ app.use("/api/v1/media", mediaRoutes);
 app.use("/api/v1/artisans", artisanRoutes);
 app.use("/api/v1/articles", articleRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/contact", contactLeadRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

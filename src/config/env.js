@@ -45,5 +45,10 @@ export const env = {
         process.env.LOGIN_RATE_WINDOW_MS,
         15 * 60 * 1000
     ),
-    loginRateMax: parseNumber(process.env.LOGIN_RATE_MAX, 10)
+    loginRateMax: parseNumber(process.env.LOGIN_RATE_MAX, 10),
+    contactRateWindowMs: parseNumber(
+        process.env.CONTACT_RATE_WINDOW_MS,
+        15 * 60 * 1000
+    ),
+    contactRateMax: parseNumber(process.env.CONTACT_RATE_MAX, 5)
 };

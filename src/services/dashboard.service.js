@@ -3,6 +3,7 @@ import Craft from "../models/Craft.js";
 import Artisan from "../models/Artisan.js";
 import Article from "../models/Article.js";
 import Media from "../models/Media.js";
+import ContactLead from "../models/ContactLead.js";
 
 export const getDashboardStats =
 async () => {
@@ -12,7 +13,8 @@ async () => {
         crafts,
         artisans,
         articles,
-        media
+        media,
+        newContactLeads
     ] = await Promise.all([
 
         Category.countDocuments({
@@ -33,6 +35,10 @@ async () => {
 
         Media.countDocuments({
             status: true
+        }),
+
+        ContactLead.countDocuments({
+            leadStatus: "new"
         })
 
     ]);
@@ -42,7 +48,8 @@ async () => {
         crafts,
         artisans,
         articles,
-        media
+        media,
+        newContactLeads
     };
 
 };
