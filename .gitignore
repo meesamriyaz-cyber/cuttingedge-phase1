@@ -1,11 +1,9 @@
-# Frontend folders (only backend deployed)
+# Legacy frontend (only frontend_1 is deployed)
 frontend/
-frontend_1/
 
 # Build outputs
 dist/
 build/
-frontend_1/dist/
 
 # Environment variables
 .env
